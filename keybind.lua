@@ -22,8 +22,12 @@ G.keys = {
 			title = "I am title",
 			choices = {
 				{
-					label = "bundle exec rails c",
+					label = "Rails c",
 					id = "bundle exec rails c",
+				},
+				{
+					label = "Rename current workspace",
+					id = "wezterm cli rename-workspace ",
 				},
 			},
 		}),
@@ -45,7 +49,6 @@ G.keys = {
 		mods = "LEADER",
 		action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
 	},
-	-- { key = "s", mods = "LEADER", action = act.SwitchWorkspaceRelative(1) },
 	-- New workspace
 	{
 		key = "a",
