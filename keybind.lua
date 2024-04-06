@@ -6,6 +6,28 @@ local G = {}
 
 G.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
 G.keys = {
+  {
+    -- https://wezfurlong.org/wezterm/config/lua/keyassignment/InputSelector.html?h=fuzzy#example-of-choosing-some-canned-text-to-enter-into-the-terminal
+    key = 'i',
+    mods = 'LEADER',
+    action = act.InputSelector {
+      action = wezterm.action_callback(function(window, pane, id, label)
+        if not id and not label then
+          wezterm.log_info 'cancelled'
+        else
+          wezterm.log_info('you selected ', id, label)
+          pane:send_text(id)
+        end
+      end),
+      title = 'I am title',
+      choices = {
+        {
+          label = 'bundle exec rails c',
+          id = 'bundle exec rails c',
+        },
+      },
+    },
+  },
 	{ key = "m", mods = "CMD", action = act.DisableDefaultAssignment },
 	{ key = "h", mods = "CMD", action = act.DisableDefaultAssignment },
 	{

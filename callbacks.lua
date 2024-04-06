@@ -67,20 +67,20 @@ wezterm.on("trigger-nvim-with-scrollback", function(window, pane)
 end)
 
 -- Automatic switching theme
-local function scheme_for_appearance(appearance)
-  if appearance:find 'Dark' then
-    return 'Gruvbox dark, soft (base16)'
-  else
-    return 'Gruvbox light, soft (base16)'
-  end
-end
+-- local function scheme_for_appearance(appearance)
+--   if appearance:find 'Dark' then
+--     return 'Gruvbox dark, soft (base16)'
+--   else
+--     return 'Gruvbox dark, soft (base16)'
+--   end
+-- end
 
-wezterm.on('window-config-reloaded', function(window, pane)
-  local overrides = window:get_config_overrides() or {}
-  local appearance = window:get_appearance()
-  local scheme = scheme_for_appearance(appearance)
-  if overrides.color_scheme ~= scheme then
-    overrides.color_scheme = scheme
-    window:set_config_overrides(overrides)
-  end
-end)
+-- wezterm.on('window-config-reloaded', function(window, pane)
+--   local overrides = window:get_config_overrides() or {}
+--   local appearance = window:get_appearance()
+--   local scheme = scheme_for_appearance(appearance)
+--   if overrides.color_scheme ~= scheme then
+--     overrides.color_scheme = scheme
+--     window:set_config_overrides(overrides)
+--   end
+-- end)
