@@ -6,28 +6,28 @@ local G = {}
 
 G.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
 G.keys = {
-  {
-    -- https://wezfurlong.org/wezterm/config/lua/keyassignment/InputSelector.html?h=fuzzy#example-of-choosing-some-canned-text-to-enter-into-the-terminal
-    key = 'i',
-    mods = 'LEADER',
-    action = act.InputSelector {
-      action = wezterm.action_callback(function(window, pane, id, label)
-        if not id and not label then
-          wezterm.log_info 'cancelled'
-        else
-          wezterm.log_info('you selected ', id, label)
-          pane:send_text(id)
-        end
-      end),
-      title = 'I am title',
-      choices = {
-        {
-          label = 'bundle exec rails c',
-          id = 'bundle exec rails c',
-        },
-      },
-    },
-  },
+	{
+		-- https://wezfurlong.org/wezterm/config/lua/keyassignment/InputSelector.html?h=fuzzy#example-of-choosing-some-canned-text-to-enter-into-the-terminal
+		key = "i",
+		mods = "LEADER",
+		action = act.InputSelector({
+			action = wezterm.action_callback(function(window, pane, id, label)
+				if not id and not label then
+					wezterm.log_info("cancelled")
+				else
+					wezterm.log_info("you selected ", id, label)
+					pane:send_text(id)
+				end
+			end),
+			title = "I am title",
+			choices = {
+				{
+					label = "bundle exec rails c",
+					id = "bundle exec rails c",
+				},
+			},
+		}),
+	},
 	{ key = "m", mods = "CMD", action = act.DisableDefaultAssignment },
 	{ key = "h", mods = "CMD", action = act.DisableDefaultAssignment },
 	{
@@ -41,11 +41,11 @@ G.keys = {
 	{ key = "p", mods = "CMD", action = act.ActivateCommandPalette },
 	-- Fuzzy workspace
 	{
-		key = "w",
+		key = "s",
 		mods = "LEADER",
 		action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
 	},
-	{ key = "s", mods = "LEADER", action = act.SwitchWorkspaceRelative(1) },
+	-- { key = "s", mods = "LEADER", action = act.SwitchWorkspaceRelative(1) },
 	-- New workspace
 	{
 		key = "a",
@@ -87,7 +87,9 @@ G.keys = {
 	{ key = "t", mods = "LEADER", action = act.ShowTabNavigator },
 	{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
 	{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
-	-- { key = "w", mods = "LEADER", action = act.PaneSelect },
+	{ key = "N", mods = "LEADER", action = act.MoveTabRelative(1) },
+	{ key = "P", mods = "LEADER", action = act.MoveTabRelative(-1) },
+	{ key = "w", mods = "LEADER", action = act.PaneSelect },
 	{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 	{ key = "x", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
@@ -112,11 +114,11 @@ G.key_tables = {
 		-- Cancel the mode by pressing escape
 		{ key = "Escape", action = "PopKeyTable" },
 	},
-  search_mode = {
-    { key = 'Escape', mods = 'NONE', action = act.CopyMode 'Close' },
-    { key = 'j', mods = 'CTRL', action = act.CopyMode 'NextMatch' },
-    { key = 'k', mods = 'CTRL', action = act.CopyMode 'PriorMatch' },
-  }
+	search_mode = {
+		{ key = "Escape", mods = "NONE", action = act.CopyMode("Close") },
+		{ key = "j", mods = "CTRL", action = act.CopyMode("NextMatch") },
+		{ key = "k", mods = "CTRL", action = act.CopyMode("PriorMatch") },
+	},
 }
 
 return G

@@ -18,36 +18,9 @@ G.window_frame = {
 }
 
 G.colors = {
-	tab_bar = {
-		background = "#0b0022",
-		active_tab = {
-			bg_color = "#ffffff",
-			fg_color = "#000000",
-			intensity = "Normal",
-			underline = "None",
-			italic = false,
-			strikethrough = false,
-		},
-		inactive_tab = {
-			bg_color = "#1b1032",
-			fg_color = "#808080",
-		},
-		inactive_tab_hover = {
-			bg_color = "#3b3052",
-			fg_color = "#909090",
-			italic = true,
-		},
-
-		new_tab = {
-			bg_color = "#1b1032",
-			fg_color = "#808080",
-		},
-		new_tab_hover = {
-			bg_color = "#3b3052",
-			fg_color = "#909090",
-			italic = true,
-		},
-	},
+  tab_bar = {
+    inactive_tab_edge = '#575757',
+  },
 }
 
 G.window_padding = {
