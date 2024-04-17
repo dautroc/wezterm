@@ -1,6 +1,12 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 local utils = require("utils")
+local function is_vim(pane)
+	local process_info = pane:get_foreground_process_info()
+	local process_name = process_info and process_info.name
+
+	return process_name == "nvim" or process_name == "vim"
+end
 
 local G = {}
 
@@ -86,6 +92,38 @@ G.keys = {
 				end
 			end),
 		}),
+	},
+	{
+		key = ";",
+		mods = "CTRL",
+		action = wezterm.action_callback(function(window, pane)
+			local tab = window:active_tab()
+			if is_vim(pane) then
+				wezterm.log_info(#tab:panes(), "ok")
+				if (#tab:panes()) == 1 then
+					pane:split({ direction = "Bottom" })
+				else
+					window:perform_action({
+						SendKey = { key = ";", mods = "CTRL" },
+					}, pane)
+				end
+				return
+			end
+
+			local vim_pane = nil
+
+			for _, p in ipairs(tab:panes()) do
+				if is_vim(p) then
+					vim_pane = p
+					break
+				end
+			end
+
+			if vim_pane then
+				vim_pane:activate()
+				tab:set_zoomed(true)
+			end
+		end),
 	},
 	{ key = "t", mods = "LEADER", action = act.ShowTabNavigator },
 	{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
