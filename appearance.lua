@@ -2,7 +2,15 @@ local wezterm = require("wezterm")
 
 local G = {}
 
-G.color_scheme = "Kanagawa (Gogh)"
+-- Colorscheme
+local file = io.open("~/config/wezterm/colorscheme", "r")
+if file then
+	G.color_scheme = file:read("*a")
+	file:close()
+else
+	G.color_scheme = "Tokyo Night Day"
+end
+
 G.font = wezterm.font("JetBrains Mono")
 G.font_size = 13
 

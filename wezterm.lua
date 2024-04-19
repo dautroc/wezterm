@@ -4,8 +4,6 @@ local wezterm = require("wezterm")
 local keybind = require("keybind")
 local appearance = require("appearance")
 
-require("callbacks")
-
 -- This table will hold the configuration.
 local config = {}
 
@@ -14,10 +12,9 @@ if wezterm.config_builder then
 end
 
 -- Merge all the configuration sources into the config table
-config_sources = {
+local config_sources = {
   appearance,
   keybind,
-  callbacks,
 }
 
 for _, source in ipairs(config_sources) do
@@ -26,4 +23,5 @@ for _, source in ipairs(config_sources) do
   end
 end
 
+require("callbacks")
 return config
