@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 local G = {}
 
 -- Colorscheme
-local file = io.open("./colorscheme", "r")
+local file = io.open(wezterm.config_dir .. "/colorscheme", "r")
 if file then
 	G.color_scheme = file:read("*a")
 	file:close()
