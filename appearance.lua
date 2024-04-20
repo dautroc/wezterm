@@ -15,20 +15,14 @@ G.font = wezterm.font("JetBrains Mono")
 G.font_size = 13
 
 -- Tab bar
-G.use_fancy_tab_bar = true
+G.use_fancy_tab_bar = false
 G.hide_tab_bar_if_only_one_tab = false
+G.enable_tab_bar = true
+G.tab_bar_at_bottom = false
 
 G.window_frame = {
 	font = wezterm.font({ family = "JetBrains Mono" }),
 	font_size = 12.0,
-	active_titlebar_bg = "#333333",
-	inactive_titlebar_bg = "#333333",
-}
-
-G.colors = {
-  tab_bar = {
-    inactive_tab_edge = '#575757',
-  },
 }
 
 G.window_padding = {
