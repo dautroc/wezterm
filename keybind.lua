@@ -57,7 +57,7 @@ G.keys = {
 	},
 	-- New workspace
 	{
-		key = "a",
+		key = "w",
 		mods = "LEADER",
 		action = act.PromptInputLine({
 			description = wezterm.format({
@@ -126,11 +126,11 @@ G.keys = {
 		end),
 	},
 	{ key = "t", mods = "LEADER", action = act.ShowTabNavigator },
-	{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
-	{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
-	{ key = "N", mods = "LEADER", action = act.MoveTabRelative(1) },
-	{ key = "P", mods = "LEADER", action = act.MoveTabRelative(-1) },
-	{ key = "w", mods = "LEADER", action = act.PaneSelect },
+	{ key = "k", mods = "LEADER", action = act.ActivateTabRelative(1) },
+	{ key = "j", mods = "LEADER", action = act.ActivateTabRelative(-1) },
+	-- { key = "N", mods = "LEADER", action = act.MoveTabRelative(1) },
+	-- { key = "P", mods = "LEADER", action = act.MoveTabRelative(-1) },
+	{ key = "p", mods = "LEADER", action = act.PaneSelect },
 	{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 	{ key = "x", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
