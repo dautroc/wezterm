@@ -53,7 +53,9 @@ G.keys = {
 	{
 		key = "s",
 		mods = "LEADER",
-		action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
+    action = act.SwitchWorkspaceRelative(1),
+    -- Enable this to show the launcher args
+		-- action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
 	},
 	-- New workspace
 	{
@@ -126,11 +128,11 @@ G.keys = {
 		end),
 	},
 	{ key = "t", mods = "LEADER", action = act.ShowTabNavigator },
-	{ key = "k", mods = "LEADER", action = act.ActivateTabRelative(1) },
-	{ key = "j", mods = "LEADER", action = act.ActivateTabRelative(-1) },
+	{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
+	{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
 	-- { key = "N", mods = "LEADER", action = act.MoveTabRelative(1) },
 	-- { key = "P", mods = "LEADER", action = act.MoveTabRelative(-1) },
-	{ key = "p", mods = "LEADER", action = act.PaneSelect },
+	-- { key = "p", mods = "LEADER", action = act.PaneSelect },
 	{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 	{ key = "x", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
