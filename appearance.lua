@@ -12,12 +12,13 @@ else
 end
 
 G.font = wezterm.font("JetBrains Mono")
+-- G.font = wezterm.font("Maple Mono")
 G.font_size = 13
 
 -- Tab bar
 G.use_fancy_tab_bar = false
 G.hide_tab_bar_if_only_one_tab = false
-G.enable_tab_bar = true
+G.enable_tab_bar = false
 G.tab_max_width = 50
 G.tab_bar_at_bottom = false
 G.show_tab_index_in_tab_bar = true

@@ -10,7 +10,7 @@ end
 
 local G = {}
 
-G.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
+G.leader = { key = "b", mods = "CTRL|CMD", timeout_milliseconds = 1000 }
 G.keys = {
 	{
 		-- https://wezfurlong.org/wezterm/config/lua/keyassignment/InputSelector.html?h=fuzzy#example-of-choosing-some-canned-text-to-enter-into-the-terminal
