@@ -59,7 +59,7 @@ G.keys = {
 	},
 	-- New workspace
 	{
-		key = "w",
+		key = "a",
 		mods = "LEADER",
 		action = act.PromptInputLine({
 			description = wezterm.format({
