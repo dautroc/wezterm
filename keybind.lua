@@ -35,6 +35,10 @@ G.keys = {
 					label = "Rename current workspace",
 					id = "wezterm cli rename-workspace ",
 				},
+				{
+					label = "cd ssh app",
+					id = "cd /var/app/current && bundle exec rails c",
+				},
 			},
 		}),
 	},

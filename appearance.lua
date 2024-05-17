@@ -12,7 +12,13 @@ else
 end
 
 G.font = wezterm.font("JetBrains Mono")
+-- G.font = wezterm.font("Fira Code")
 -- G.font = wezterm.font("Maple Mono")
+-- G.font = wezterm.font("Monaspace Xenon Var")
+-- G.font = wezterm.font("Monaspace Neon Var")
+-- G.font = wezterm.font("Monaspace Radon Var")
+-- G.font = wezterm.font("Monaspace Krypton Var")
+-- G.font = wezterm.font("Monaspace Argon Var")
 G.font_size = 13
 
 -- Tab bar
