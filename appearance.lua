@@ -12,6 +12,7 @@ else
 end
 
 G.font = wezterm.font("JetBrains Mono")
+-- G.font = wezterm.font("JetBrains Mono", { italic = true })
 -- G.font = wezterm.font("Fira Code")
 -- G.font = wezterm.font("Maple Mono")
 -- G.font = wezterm.font("Monaspace Xenon Var")
