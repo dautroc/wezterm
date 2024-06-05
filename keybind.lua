@@ -10,7 +10,7 @@ end
 
 local G = {}
 
-G.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+G.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
 G.keys = {
 	{
 		-- https://wezfurlong.org/wezterm/config/lua/keyassignment/InputSelector.html?h=fuzzy#example-of-choosing-some-canned-text-to-enter-into-the-terminal
@@ -55,9 +55,9 @@ G.keys = {
 	{
 		key = "s",
 		mods = "LEADER",
-		action = act.SwitchWorkspaceRelative(1),
+		-- action = act.SwitchWorkspaceRelative(1),
 		-- Enable this to show the launcher args
-		-- action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
+		action = act.ShowLauncherArgs({ flags = "WORKSPACES|FUZZY" }),
 	},
 	-- New workspace
 	{
