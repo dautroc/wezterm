@@ -10,7 +10,7 @@ end
 
 local G = {}
 
-G.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
+G.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 G.keys = {
 	{
 		-- https://wezfurlong.org/wezterm/config/lua/keyassignment/InputSelector.html?h=fuzzy#example-of-choosing-some-canned-text-to-enter-into-the-terminal
@@ -42,8 +42,6 @@ G.keys = {
 			},
 		}),
 	},
-	{ key = "m", mods = "CMD", action = act.DisableDefaultAssignment },
-	{ key = "h", mods = "CMD", action = act.DisableDefaultAssignment },
 	{
 		key = "k",
 		mods = "CMD",
@@ -57,8 +55,8 @@ G.keys = {
 	{
 		key = "s",
 		mods = "LEADER",
-    action = act.SwitchWorkspaceRelative(1),
-    -- Enable this to show the launcher args
+		action = act.SwitchWorkspaceRelative(1),
+		-- Enable this to show the launcher args
 		-- action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
 	},
 	-- New workspace
@@ -149,6 +147,11 @@ G.keys = {
 	utils.bind_if(utils.is_outside_vim, "l", "CTRL", act.ActivatePaneDirection("Right")),
 	utils.bind_if(utils.is_outside_vim, "j", "CTRL", act.ActivatePaneDirection("Down")),
 	utils.bind_if(utils.is_outside_vim, "k", "CTRL", act.ActivatePaneDirection("Up")),
+
+  -- Disable default keybindings
+	{ key = "m", mods = "CMD", action = act.DisableDefaultAssignment },
+	{ key = "h", mods = "CMD", action = act.DisableDefaultAssignment },
+	{ key = "m", mods = "CTRL", action = act.DisableDefaultAssignment },
 }
 
 G.key_tables = {
