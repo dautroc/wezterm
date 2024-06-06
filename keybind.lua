@@ -10,7 +10,7 @@ end
 
 local G = {}
 
-G.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
+G.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 G.keys = {
 	{
 		-- https://wezfurlong.org/wezterm/config/lua/keyassignment/InputSelector.html?h=fuzzy#example-of-choosing-some-canned-text-to-enter-into-the-terminal
@@ -143,15 +143,23 @@ G.keys = {
 	{ key = " ", mods = "LEADER", action = act.ActivateCopyMode },
 
 	-- Support navigation
-	utils.bind_if(utils.is_outside_vim, "h", "CTRL", act.ActivatePaneDirection("Left")),
-	utils.bind_if(utils.is_outside_vim, "l", "CTRL", act.ActivatePaneDirection("Right")),
-	utils.bind_if(utils.is_outside_vim, "j", "CTRL", act.ActivatePaneDirection("Down")),
-	utils.bind_if(utils.is_outside_vim, "k", "CTRL", act.ActivatePaneDirection("Up")),
+	-- utils.bind_if(utils.is_outside_vim, "h", "CTRL", act.ActivatePaneDirection("Left")),
+	-- utils.bind_if(utils.is_outside_vim, "l", "CTRL", act.ActivatePaneDirection("Right")),
+	-- utils.bind_if(utils.is_outside_vim, "j", "CTRL", act.ActivatePaneDirection("Down")),
+	-- utils.bind_if(utils.is_outside_vim, "k", "CTRL", act.ActivatePaneDirection("Up")),
 
   -- Disable default keybindings
 	{ key = "m", mods = "CMD", action = act.DisableDefaultAssignment },
 	{ key = "h", mods = "CMD", action = act.DisableDefaultAssignment },
 	{ key = "m", mods = "CTRL", action = act.DisableDefaultAssignment },
+	{ key = "h", mods = "ALT", action = act.DisableDefaultAssignment },
+	{ key = "j", mods = "ALT", action = act.DisableDefaultAssignment },
+	{ key = "k", mods = "ALT", action = act.DisableDefaultAssignment },
+	{ key = "l", mods = "ALT", action = act.DisableDefaultAssignment },
+	{ key = "h", mods = "CTRL", action = act.DisableDefaultAssignment },
+	{ key = "j", mods = "CTRL", action = act.DisableDefaultAssignment },
+	{ key = "k", mods = "CTRL", action = act.DisableDefaultAssignment },
+	{ key = "l", mods = "CTRL", action = act.DisableDefaultAssignment },
 }
 
 G.key_tables = {
