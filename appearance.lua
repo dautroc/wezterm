@@ -31,6 +31,7 @@ G.tab_max_width = 50
 G.tab_bar_at_bottom = false
 G.show_tab_index_in_tab_bar = true
 G.show_new_tab_button_in_tab_bar = false
+G.status_update_interval = 1000
 
 G.window_frame = {
 	font = wezterm.font({ family = "JetBrains Mono" }),
