@@ -55,14 +55,18 @@ G.keys = {
 	{
 		key = "s",
 		mods = "LEADER",
-		-- action = act.SwitchWorkspaceRelative(1),
-		-- Enable this to show the launcher args
 		action = act.ShowLauncherArgs({ flags = "WORKSPACES|FUZZY" }),
+	},
+  -- Switch next workspace
+	{
+		key = "s",
+		mods = "CMD",
+		action = act.SwitchWorkspaceRelative(1),
 	},
 	-- New workspace
 	{
 		key = "a",
-		mods = "LEADER",
+		mods = "CMD",
 		action = act.PromptInputLine({
 			description = wezterm.format({
 				{ Attribute = { Intensity = "Bold" } },
@@ -129,9 +133,11 @@ G.keys = {
 			end
 		end),
 	},
-	{ key = "t", mods = "LEADER", action = act.ShowTabNavigator },
-	{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
-	{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
+	{ key = "t", mods = "CTRL", action = act.ShowTabNavigator },
+	-- { key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
+	-- { key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
+	{ key = "n", mods = "CTRL", action = act.ActivateTabRelative(1) },
+	{ key = "p", mods = "CTRL", action = act.ActivateTabRelative(-1) },
 	-- { key = "N", mods = "LEADER", action = act.MoveTabRelative(1) },
 	-- { key = "P", mods = "LEADER", action = act.MoveTabRelative(-1) },
 	-- { key = "p", mods = "LEADER", action = act.PaneSelect },
@@ -140,7 +146,7 @@ G.keys = {
 	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "e", mods = "LEADER", action = act.EmitEvent("trigger-nvim-with-scrollback") },
 	{ key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }) },
-	{ key = " ", mods = "LEADER", action = act.ActivateCopyMode },
+	{ key = "y", mods = "LEADER", action = act.ActivateCopyMode },
 
 	-- Support navigation
 	utils.bind_if(utils.is_outside_vim, "h", "CTRL", act.ActivatePaneDirection("Left")),
