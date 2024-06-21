@@ -11,6 +11,7 @@ else
 	G.color_scheme = "Tokyo Night Day"
 end
 
+G.window_decorations = "RESIZE"
 G.font = wezterm.font("JetBrains Mono")
 -- G.font = wezterm.font("JetBrains Mono", { italic = true })
 -- G.font = wezterm.font("Fira Code")

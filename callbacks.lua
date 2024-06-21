@@ -29,14 +29,14 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
 end)
 
 -- Status bar
-wezterm.on("update-right-status", function(window, pane)
-	local separator = "  |  "
-	local date = wezterm.strftime("%a %b %-d %H:%M ")
-
-	window:set_right_status(wezterm.format({
-		{ Text = " " .. window:active_workspace() .. separator .. date },
-	}))
-end)
+-- wezterm.on("update-right-status", function(window, pane)
+-- 	local separator = "  |  "
+-- 	local date = wezterm.strftime("%a %b %-d %H:%M ")
+--
+-- 	window:set_right_status(wezterm.format({
+-- 		{ Text = " " .. window:active_workspace() .. separator .. date },
+-- 	}))
+-- end)
 
 wezterm.on("trigger-nvim-with-scrollback", function(window, pane)
 	local scrollback = pane:get_lines_as_text()
@@ -72,7 +72,7 @@ wezterm.on("update-status", function(window, pane)
     stat_color = "#7dcfff"
   end
   if window:leader_is_active() then
-    stat = "LDR"
+    stat = "LEADER"
     stat_color = "#bb9af7"
   end
 
