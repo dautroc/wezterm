@@ -10,7 +10,7 @@ end
 
 local G = {}
 
-G.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+G.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
 G.keys = {
 	{
 		-- https://wezfurlong.org/wezterm/config/lua/keyassignment/InputSelector.html?h=fuzzy#example-of-choosing-some-canned-text-to-enter-into-the-terminal
@@ -134,10 +134,10 @@ G.keys = {
 		end),
 	},
 	{ key = "t", mods = "CTRL", action = act.ShowTabNavigator },
-	-- { key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
-	-- { key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
-	{ key = "n", mods = "CTRL", action = act.ActivateTabRelative(1) },
-	{ key = "p", mods = "CTRL", action = act.ActivateTabRelative(-1) },
+	{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
+	{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
+	-- { key = "n", mods = "CTRL", action = act.ActivateTabRelative(1) },
+	-- { key = "p", mods = "CTRL", action = act.ActivateTabRelative(-1) },
 	-- { key = "N", mods = "LEADER", action = act.MoveTabRelative(1) },
 	-- { key = "P", mods = "LEADER", action = act.MoveTabRelative(-1) },
 	-- { key = "p", mods = "LEADER", action = act.PaneSelect },
@@ -146,6 +146,7 @@ G.keys = {
 	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "e", mods = "LEADER", action = act.EmitEvent("trigger-nvim-with-scrollback") },
 	{ key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }) },
+	-- { key = " ", mods = "LEADER", action = act.ActivateKeyTable({ name = "search_mode", one_shot = false }) },
 	{ key = "y", mods = "LEADER", action = act.ActivateCopyMode },
 
 	-- Support navigation
