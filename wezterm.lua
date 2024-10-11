@@ -9,6 +9,11 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+--------------------------
+-- PLUGIN CONFIGURATION --
+--------------------------
+local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
+
 ----------------
 -- APPEARANCE --
 ----------------
@@ -55,11 +60,6 @@ config.window_padding = {
 
 local act = wezterm.action
 local utils = require("utils")
-
--- Sessionizer
-local sessionizer = wezterm.plugin.require "https://github.com/mikkasendke/sessionizer.wezterm"
-sessionizer.apply_to_config(config, true)
-sessionizer.config.paths = "~/workspace"
 
 local function is_vim(pane)
 	local process_info = pane:get_foreground_process_info()
@@ -156,13 +156,13 @@ config.keys = {
 			end
 		end),
 	},
-	{ key = "t", mods = "CTRL", action = act.ShowTabNavigator },
+	{ key = "t", mods = "LEADER", action = act.ShowTabNavigator },
 	{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
 	{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
 	{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 	{ key = "x", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "e", mods = "LEADER", action = act.EmitEvent("trigger-nvim-with-scrollback") },
+	{ key = "e", mods = "LEADER", action = act.EmitEvent("trigger-nvim-with-scrollback") }, -- Edit terminal using nvim
 	{ key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }) },
 	-- { key = " ", mods = "LEADER", action = act.ActivateKeyTable({ name = "search_mode", one_shot = false }) },
 	{ key = "y", mods = "LEADER", action = act.ActivateCopyMode },
@@ -176,14 +176,47 @@ config.keys = {
 	-- Disable default keybindings
 	{ key = "m", mods = "CTRL", action = act.DisableDefaultAssignment },
 
-  -- Sessionizer
-  { key = "s", mods = "LEADER", action = sessionizer.show },
-  -- { key = "r", mods = "LEADER", action = sessionizer.switch_to_most_recent },
+	-- Resurrect
+	-- Save workspace state
+	{
+		key = "s",
+		mods = "ALT",
+		action = wezterm.action_callback(function(win, pane)
+			resurrect.save_state(resurrect.workspace_state.get_workspace_state())
+			resurrect.window_state.save_window_action()
+		end),
+	},
+	{
+		key = "r",
+		mods = "ALT",
+		action = wezterm.action_callback(function(win, pane)
+			resurrect.fuzzy_load(win, pane, function(id, label)
+				local type = string.match(id, "^([^/]+)") -- match before '/'
+				id = string.match(id, "([^/]+)$") -- match after '/'
+				id = string.match(id, "(.+)%..+$") -- remove file extention
+				local opts = {
+					relative = true,
+					restore_text = true,
+					on_pane_restore = resurrect.tab_state.default_on_pane_restore,
+				}
+				if type == "workspace" then
+					local state = resurrect.load_state(id, "workspace")
+					resurrect.workspace_state.restore_workspace(state, opts)
+				elseif type == "window" then
+					local state = resurrect.load_state(id, "window")
+					resurrect.window_state.restore_window(pane:window(), state, opts)
+				elseif type == "tab" then
+					local state = resurrect.load_state(id, "tab")
+					resurrect.tab_state.restore_tab(pane:tab(), state, opts)
+				end
+			end)
+		end),
+	},
 }
 
 -- Resze pane key table
 config.key_tables = {
-	resize_hane = {
+	resize_pane = {
 		{ key = "h", action = act.AdjustPaneSize({ "Left", 1 }) },
 		{ key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
 		{ key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
@@ -193,9 +226,12 @@ config.key_tables = {
 		{ key = "Escape", action = "PopKeyTable" },
 	},
 	search_mode = {
+		{ key = "Enter", mods = "NONE", action = act.CopyMode("PriorMatch") },
 		{ key = "Escape", mods = "NONE", action = act.CopyMode("Close") },
-		{ key = "j", mods = "CTRL", action = act.CopyMode("NextMatch") },
-		{ key = "k", mods = "CTRL", action = act.CopyMode("PriorMatch") },
+		{ key = "n", mods = "CTRL", action = act.CopyMode("NextMatch") },
+		{ key = "p", mods = "CTRL", action = act.CopyMode("PriorMatch") },
+		{ key = "r", mods = "CTRL", action = act.CopyMode("CycleMatchType") },
+		{ key = "u", mods = "CTRL", action = act.CopyMode("ClearPattern") },
 	},
 }
 
