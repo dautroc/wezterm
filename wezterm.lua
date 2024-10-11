@@ -81,14 +81,14 @@ config.keys = {
 	},
 	-- List workspace
 	{
-		key = "w",
-		mods = "LEADER",
+		key = "f",
+		mods = "ALT",
 		action = act.ShowLauncherArgs({ flags = "WORKSPACES|FUZZY" }),
 	},
 	-- New workspace
 	{
-		key = "a",
-		mods = "LEADER",
+		key = "w",
+		mods = "ALT",
 		action = act.PromptInputLine({
 			description = wezterm.format({
 				{ Attribute = { Intensity = "Bold" } },
@@ -113,7 +113,7 @@ config.keys = {
 	-- Rename tab title
 	{
 		key = ",",
-		mods = "LEADER",
+		mods = "ALT",
 		action = act.PromptInputLine({
 			description = "Enter new name for tab",
 			action = wezterm.action_callback(function(window, pane, line)
@@ -156,16 +156,21 @@ config.keys = {
 			end
 		end),
 	},
-	{ key = "t", mods = "LEADER", action = act.ShowTabNavigator },
-	{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
-	{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
-	{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
-	{ key = "x", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "e", mods = "LEADER", action = act.EmitEvent("trigger-nvim-with-scrollback") }, -- Edit terminal using nvim
-	{ key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }) },
-	-- { key = " ", mods = "LEADER", action = act.ActivateKeyTable({ name = "search_mode", one_shot = false }) },
-	{ key = "y", mods = "LEADER", action = act.ActivateCopyMode },
+	-- { key = "t", mods = "ALT", action = act.ShowTabNavigator },
+	{ key = "d", mods = "ALT", action = act.CloseCurrentPane },
+
+  -- Tab navigation
+	{ key = "l", mods = "ALT", action = act.ActivateTabRelative(1) },
+	{ key = "h", mods = "ALT", action = act.ActivateTabRelative(-1) },
+  { key = 'k', mods = 'ALT', action = act.MoveTabRelative(-1) },
+  { key = 'j', mods = 'ALT', action = act.MoveTabRelative(1) },
+
+	{ key = "z", mods = "ALT", action = act.TogglePaneZoomState },
+	{ key = "x", mods = "ALT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "v", mods = "ALT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "e", mods = "ALT", action = act.EmitEvent("trigger-nvim-with-scrollback") }, -- Edit terminal using nvim
+	{ key = "r", mods = "ALT", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }) },
+	{ key = "y", mods = "ALT", action = act.ActivateCopyMode },
 
 	-- Support navigation
 	utils.bind_if(utils.is_outside_vim, "h", "CTRL", act.ActivatePaneDirection("Left")),
@@ -179,7 +184,7 @@ config.keys = {
 	-- Resurrect: Save workspace state
 	{
 		key = "s",
-		mods = "ALT",
+		mods = "LEADER",
 		action = wezterm.action_callback(function(win, pane)
 			resurrect.save_state(resurrect.workspace_state.get_workspace_state())
 			resurrect.window_state.save_window_action()
@@ -187,8 +192,8 @@ config.keys = {
 	},
 	-- Resurrect: Load workspace state
 	{
-		key = "r",
-		mods = "ALT",
+		key = "l",
+		mods = "LEADER",
 		action = wezterm.action_callback(function(win, pane)
 			resurrect.fuzzy_load(win, pane, function(id, label)
 				local type = string.match(id, "^([^/]+)") -- match before '/'
