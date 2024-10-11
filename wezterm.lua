@@ -83,7 +83,7 @@ config.keys = {
 	{
 		key = "w",
 		mods = "LEADER",
-		action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
+		action = act.ShowLauncherArgs({ flags = "WORKSPACES|FUZZY" }),
 	},
 	-- New workspace
 	{
@@ -176,8 +176,7 @@ config.keys = {
 	-- Disable default keybindings
 	{ key = "m", mods = "CTRL", action = act.DisableDefaultAssignment },
 
-	-- Resurrect
-	-- Save workspace state
+	-- Resurrect: Save workspace state
 	{
 		key = "s",
 		mods = "ALT",
@@ -186,6 +185,7 @@ config.keys = {
 			resurrect.window_state.save_window_action()
 		end),
 	},
+	-- Resurrect: Load workspace state
 	{
 		key = "r",
 		mods = "ALT",
@@ -210,6 +210,14 @@ config.keys = {
 					resurrect.tab_state.restore_tab(pane:tab(), state, opts)
 				end
 			end)
+		end),
+	},
+	{
+    key = "k",
+		mods = "LEADER",
+		action = wezterm.action_callback(function(window)
+			local w = window:active_workspace()
+			utils.kill_workspace(w)
 		end),
 	},
 }
