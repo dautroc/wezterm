@@ -12,36 +12,7 @@ local G = {}
 
 G.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
 G.keys = {
-	{
-		-- https://wezfurlong.org/wezterm/config/lua/keyassignment/InputSelector.html?h=fuzzy#example-of-choosing-some-canned-text-to-enter-into-the-terminal
-		key = "i",
-		mods = "LEADER",
-		action = act.InputSelector({
-			action = wezterm.action_callback(function(window, pane, id, label)
-				if not id and not label then
-					wezterm.log_info("cancelled")
-				else
-					wezterm.log_info("you selected ", id, label)
-					pane:send_text(id)
-				end
-			end),
-			title = "I am title",
-			choices = {
-				{
-					label = "Rails c",
-					id = "bundle exec rails c",
-				},
-				{
-					label = "Rename current workspace",
-					id = "wezterm cli rename-workspace ",
-				},
-				{
-					label = "cd ssh app",
-					id = "cd /var/app/current && bundle exec rails c",
-				},
-			},
-		}),
-	},
+	-- Clear scrollback
 	{
 		key = "k",
 		mods = "CMD",
@@ -50,23 +21,16 @@ G.keys = {
 			act.SendKey({ key = "L", mods = "CTRL" }),
 		}),
 	},
-	{ key = "p", mods = "CMD", action = act.ActivateCommandPalette },
-	-- Fuzzy workspace
+	-- List workspace
 	{
-		key = "s",
+		key = "w",
 		mods = "LEADER",
-		action = act.ShowLauncherArgs({ flags = "WORKSPACES|FUZZY" }),
-	},
-  -- Switch next workspace
-	{
-		key = "s",
-		mods = "CMD",
-		action = act.SwitchWorkspaceRelative(1),
+		action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
 	},
 	-- New workspace
 	{
 		key = "a",
-		mods = "CMD",
+		mods = "LEADER",
 		action = act.PromptInputLine({
 			description = wezterm.format({
 				{ Attribute = { Intensity = "Bold" } },
@@ -101,6 +65,7 @@ G.keys = {
 			end),
 		}),
 	},
+	-- Toggle popup terminal pane
 	{
 		key = ";",
 		mods = "CTRL",
@@ -136,11 +101,6 @@ G.keys = {
 	{ key = "t", mods = "CTRL", action = act.ShowTabNavigator },
 	{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
 	{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
-	{ key = "n", mods = "CTRL", action = act.ActivateTabRelative(1) },
-	{ key = "p", mods = "CTRL", action = act.ActivateTabRelative(-1) },
-	-- { key = "N", mods = "LEADER", action = act.MoveTabRelative(1) },
-	-- { key = "P", mods = "LEADER", action = act.MoveTabRelative(-1) },
-	-- { key = "p", mods = "LEADER", action = act.PaneSelect },
 	{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 	{ key = "x", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
@@ -155,20 +115,11 @@ G.keys = {
 	utils.bind_if(utils.is_outside_vim, "j", "CTRL", act.ActivatePaneDirection("Down")),
 	utils.bind_if(utils.is_outside_vim, "k", "CTRL", act.ActivatePaneDirection("Up")),
 
-  -- Disable default keybindings
-	{ key = "m", mods = "CMD", action = act.DisableDefaultAssignment },
-	{ key = "h", mods = "CMD", action = act.DisableDefaultAssignment },
+	-- Disable default keybindings
 	{ key = "m", mods = "CTRL", action = act.DisableDefaultAssignment },
-	-- { key = "h", mods = "ALT", action = act.DisableDefaultAssignment },
-	-- { key = "j", mods = "ALT", action = act.DisableDefaultAssignment },
-	-- { key = "k", mods = "ALT", action = act.DisableDefaultAssignment },
-	-- { key = "l", mods = "ALT", action = act.DisableDefaultAssignment },
-	-- { key = "h", mods = "CTRL", action = act.DisableDefaultAssignment },
-	-- { key = "j", mods = "CTRL", action = act.DisableDefaultAssignment },
-	-- { key = "k", mods = "CTRL", action = act.DisableDefaultAssignment },
-	-- { key = "l", mods = "CTRL", action = act.DisableDefaultAssignment },
 }
 
+-- Resze pane key table
 G.key_tables = {
 	resize_pane = {
 		{ key = "h", action = act.AdjustPaneSize({ "Left", 1 }) },

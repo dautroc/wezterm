@@ -3,7 +3,6 @@
 local wezterm = require("wezterm")
 local keybind = require("keybind")
 local appearance = require("appearance")
-require("callbacks")
 
 -- This table will hold the configuration.
 local config = {}
@@ -17,6 +16,8 @@ local config_sources = {
 	appearance,
 	keybind,
 }
+
+require("callbacks")
 
 for _, source in ipairs(config_sources) do
 	for key, value in pairs(source) do
