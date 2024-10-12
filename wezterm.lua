@@ -156,9 +156,6 @@ config.keys = {
 			end
 		end),
 	},
-	-- { key = "t", mods = "ALT", action = act.ShowTabNavigator },
-	{ key = "d", mods = "ALT", action = act.CloseCurrentPane },
-
   -- Tab navigation
 	{ key = "l", mods = "ALT", action = act.ActivateTabRelative(1) },
 	{ key = "h", mods = "ALT", action = act.ActivateTabRelative(-1) },
@@ -224,7 +221,7 @@ config.keys = {
 			local w = window:active_workspace()
 			utils.kill_workspace(w)
 		end),
-	},
+	}
 }
 
 -- Resze pane key table
