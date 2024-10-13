@@ -156,11 +156,11 @@ config.keys = {
 			end
 		end),
 	},
-  -- Tab navigation
+	-- Tab navigation
 	{ key = "l", mods = "ALT", action = act.ActivateTabRelative(1) },
 	{ key = "h", mods = "ALT", action = act.ActivateTabRelative(-1) },
-  { key = 'k', mods = 'ALT', action = act.MoveTabRelative(-1) },
-  { key = 'j', mods = 'ALT', action = act.MoveTabRelative(1) },
+	{ key = "k", mods = "ALT", action = act.MoveTabRelative(-1) },
+	{ key = "j", mods = "ALT", action = act.MoveTabRelative(1) },
 
 	{ key = "z", mods = "ALT", action = act.TogglePaneZoomState },
 	{ key = "x", mods = "ALT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
@@ -215,13 +215,13 @@ config.keys = {
 		end),
 	},
 	{
-    key = "k",
+		key = "k",
 		mods = "LEADER",
 		action = wezterm.action_callback(function(window)
 			local w = window:active_workspace()
 			utils.kill_workspace(w)
 		end),
-	}
+	},
 }
 
 -- Resze pane key table
