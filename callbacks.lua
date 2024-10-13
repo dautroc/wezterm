@@ -115,12 +115,12 @@ wezterm.on("update-status", function(window, pane)
   window:set_right_status(wezterm.format({
     -- Wezterm has a built-in nerd fonts
     -- https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html
-    { Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
-    { Text = " | " },
-    { Foreground = { Color = "#e0af68" } },
-    { Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
-    "ResetAttributes",
-    { Text = " | " },
+    -- { Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
+    -- { Text = " | " },
+    -- { Foreground = { Color = "#e0af68" } },
+    -- { Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
+    -- "ResetAttributes",
+    -- { Text = " | " },
     { Text = wezterm.nerdfonts.md_clock .. "  " .. time },
     { Text = "  " },
   }))
