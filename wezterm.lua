@@ -28,7 +28,7 @@ else
 end
 
 config.window_decorations = "RESIZE"
-config.font = wezterm.font("JetBrains Mono")
+config.font = wezterm.font_with_fallback { 'JetBrains Mono', 'Maple Mono' }
 config.font_size = 13
 
 -- Tab bar
@@ -112,7 +112,7 @@ config.keys = {
 	},
 	-- Rename tab title
 	{
-		key = ",",
+		key = "t",
 		mods = "ALT",
 		action = act.PromptInputLine({
 			description = "Enter new name for tab",
