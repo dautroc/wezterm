@@ -54,6 +54,12 @@ config.window_padding = {
 	bottom = 0,
 }
 
+
+local act = wezterm.action
+config.keys = {
+  { key = "e", mods = "ALT", action = act.EmitEvent("trigger-nvim-with-scrollback") }, -- Edit terminal using nvim
+}
+
 ------------------
 -- KEY BINDINGS --
 ------------------
