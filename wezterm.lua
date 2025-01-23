@@ -55,7 +55,7 @@ config.window_padding = {
 
 local act = wezterm.action
 config.keys = {
-  { key = "e", mods = "ALT", action = act.EmitEvent("trigger-nvim-with-scrollback") }, -- Edit terminal using nvim
+  -- { key = "e", mods = "ALT", action = act.EmitEvent("trigger-nvim-with-scrollback") }, -- Edit terminal using nvim
 }
 
 ------------------
