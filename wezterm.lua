@@ -27,8 +27,8 @@ else
 	config.color_scheme = "Catppuccin Frappe"
 end
 
+config.font = wezterm.font("JetBrainsMono NF")
 config.window_decorations = "RESIZE"
-config.font = wezterm.font_with_fallback { 'JetBrains Mono', 'Maple Mono' }
 config.font_size = 13
 
 -- Tab bar
@@ -39,11 +39,6 @@ config.show_tabs_in_tab_bar = true
 config.show_tab_index_in_tab_bar = true
 config.show_new_tab_button_in_tab_bar = false
 config.status_update_interval = 1000
-
-config.window_frame = {
-	font = wezterm.font({ family = "JetBrains Mono" }),
-	font_size = 12.0,
-}
 
 config.window_padding = {
 	left = 0,
