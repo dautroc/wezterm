@@ -29,7 +29,7 @@ end
 
 config.font = wezterm.font("JetBrainsMono NF")
 config.window_decorations = "RESIZE"
-config.font_size = 13
+config.font_size = 14
 
 -- Tab bar
 config.use_fancy_tab_bar = false
