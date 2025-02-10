@@ -47,17 +47,17 @@ config.window_padding = {
 	bottom = 0,
 }
 
-
+config.disable_default_key_bindings = true
 local act = wezterm.action
 config.keys = {
   -- { key = "e", mods = "ALT", action = act.EmitEvent("trigger-nvim-with-scrollback") }, -- Edit terminal using nvim
+  { key = "c", mods = "CMD", action = act({ CopyTo = "Clipboard" }) },
+  { key = "v", mods = "CMD", action = act({ PasteFrom = "Clipboard" }) }
 }
 
 ------------------
 -- KEY BINDINGS --
 ------------------
-config.disable_default_key_bindings = true
-
 -- local act = wezterm.action
 -- local utils = require("utils")
 --
