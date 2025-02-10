@@ -52,7 +52,8 @@ local act = wezterm.action
 config.keys = {
   -- { key = "e", mods = "ALT", action = act.EmitEvent("trigger-nvim-with-scrollback") }, -- Edit terminal using nvim
   { key = "c", mods = "CMD", action = act({ CopyTo = "Clipboard" }) },
-  { key = "v", mods = "CMD", action = act({ PasteFrom = "Clipboard" }) }
+  { key = "v", mods = "CMD", action = act({ PasteFrom = "Clipboard" }) },
+  { key = "Return", mods = "ALT", action = act.ToggleFullScreen },
 }
 
 ------------------
