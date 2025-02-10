@@ -56,7 +56,7 @@ config.keys = {
 ------------------
 -- KEY BINDINGS --
 ------------------
--- config.disable_default_key_bindings = true
+config.disable_default_key_bindings = true
 
 -- local act = wezterm.action
 -- local utils = require("utils")
