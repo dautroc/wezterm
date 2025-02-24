@@ -50,10 +50,13 @@ config.window_padding = {
 config.disable_default_key_bindings = true
 local act = wezterm.action
 config.keys = {
-  -- { key = "e", mods = "ALT", action = act.EmitEvent("trigger-nvim-with-scrollback") }, -- Edit terminal using nvim
   { key = "c", mods = "CMD", action = act({ CopyTo = "Clipboard" }) },
   { key = "v", mods = "CMD", action = act({ PasteFrom = "Clipboard" }) },
   { key = "Return", mods = "ALT", action = act.ToggleFullScreen },
+  { key = "q", mods = "CMD", action = act.QuitApplication },
+  { key = "=", mods = "CMD", action = act.IncreaseFontSize },
+  { key = "-", mods = "CMD", action = act.DecreaseFontSize },
+  { key = "w", mods = "CMD", action = act.CloseCurrentTab { confirm = true } },
 }
 
 ------------------
